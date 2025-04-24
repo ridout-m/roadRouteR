@@ -1,13 +1,28 @@
 Package: roadRouteR
 Type: Package
-Title: Road Route Finder with OSRM + OpenStreetMap
+Title: Route Calculation and Mapping
 Version: 0.2.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Authors@R: 
+    person("Mackenzie", "Ridout", 
+           email = "mackenzie.ridout@defra.gov.uk", 
+           role = c("aut", "cre"), 
+           comment = c(URL = "https://github.com/ridout-m"))
+Maintainer: Mackenzie Ridout <mackenzie.ridout@defra.gov.uk>
 Description: A lightweight wrapper around OSRM for calculating and visualizing drivable road routes between two locations using OpenStreetMap data.
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3
 URL: https://github.com/ridout-m/roadRouteR
 BugReports: https://github.com/ridout-m/roadRouteR/issues
+Imports:
+    sf,
+    osrm,
+    tidygeocoder,
+    dplyr,
+    geosphere,
+    leaflet,
+    magrittr,
+    tibble
+
+    

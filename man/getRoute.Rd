@@ -4,23 +4,31 @@
 \alias{getRoute}
 \title{Calculate and optionally plot a road route between two locations}
 \usage{
-getRoute(origin, destination, plot = TRUE, progress = FALSE)
+getRoute(
+  origin,
+  destination,
+  plot = TRUE,
+  progress = FALSE,
+  method = c("osm", "arcgis")
+)
 }
 \arguments{
-\item{origin}{A character string representing the starting location (e.g., "Paris", "SW1P 4DF, UK")}
+\item{origin}{A character string representing the starting location (e.g., "Paris", "SW1P 4DF, UK").}
 
-\item{destination}{A character string representing the destination location (e.g., "Berlin, Germany", "YO10 5FR")}
+\item{destination}{A character string representing the destination location (e.g., "Berlin, Germany", "YO10 5FR").}
 
-\item{plot}{Logical; if TRUE, plots the route on an interactive leaflet map. Default is TRUE.}
+\item{plot}{Logical. If TRUE, plots the route on an interactive leaflet map. Default is TRUE.}
 
-\item{progress}{Logical; if TRUE, prints progress messages to the console. Default is FALSE.}
+\item{progress}{Logical. If TRUE, prints progress messages to the console. Default is FALSE.}
+
+\item{method}{Character. Geocoding method. One of "osm" (default) or "arcgis".}
 }
 \value{
-A list with elements:
+A list with the following elements:
 \describe{
-  \item{distance_km}{Distance in kilometers}
-  \item{duration_mins}{Estimated travel time in minutes}
-  \item{route}{The `sf` object representing the route geometry}
+  \item{distance_km}{Distance in kilometers.}
+  \item{duration_mins}{Estimated travel time in minutes.}
+  \item{route}{An `sf` object representing the route geometry.}
 }
 }
 \description{
@@ -28,7 +36,9 @@ This function uses OpenStreetMap and OSRM to calculate a drivable
 route between two locations (addresses, cities, or postcodes).
 }
 \examples{
-getRoute("Brandenburg Gate, Berlin, Germany", "Paris", progress = TRUE)
-getRoute("SW1P 4DF", "North Yorkshire", plot = FALSE)
+\dontrun{
+# Internet connection required
+try(getRoute("Brandenburg Gate, Berlin, Germany", "Paris", progress = TRUE))
+}
 
 }

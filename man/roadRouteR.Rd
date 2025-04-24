@@ -4,13 +4,23 @@
 \name{roadRouteR}
 \alias{roadRouteR}
 \alias{roadRouteR-package}
-\title{roadRouteR: Route Calculation and Mapping with OSRM + OpenStreetMap}
+\title{roadRouteR: Route Calculation and Mapping}
 \description{
 A lightweight wrapper for calculating and visualizing realistic road routes using OSRM and OpenStreetMap.
 }
 \section{Functions}{
 
-- [getRoute()]: Calculate and optionally plot a road route between two places.
+- `getRoute()`: Calculate and optionally plot a road route between two places.
+}
+
+\section{Dependencies}{
+
+- `osrm`: Communicates with the OSRM backend
+- `tidygeocoder`: Converts place names/postcodes to coordinates using OSM
+- `sf`: Handles spatial data and geometry
+- `leaflet`: Plots interactive web maps
+- `geosphere`: Detects route jumps or broken segments
+- `dplyr`: Light data wrangling
 }
 
 \seealso{
@@ -20,5 +30,8 @@ Useful links:
   \item Report bugs at \url{https://github.com/ridout-m/roadRouteR/issues}
 }
 
+}
+\author{
+Mackenzie Ridout \url{https://github.com/ridout-m}
 }
 \keyword{package}
