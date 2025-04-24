@@ -10,7 +10,7 @@ Calculate and plot real road routes using OpenStreetMap and OSRM.
 You can install the development version of this package directly from GitHub:
 
 ```r
-# install.packages("devtools")
+install.packages("devtools")
 devtools::install_github("ridout-m/roadRouteR")
 ```
 
