@@ -7,7 +7,7 @@
 #' @param destination A character string representing the destination location (e.g., "Berlin, Germany", "YO10 5FR").
 #' @param plot Logical. If TRUE, plots the route on an interactive leaflet map. Default is TRUE.
 #' @param progress Logical. If TRUE, prints progress messages to the console. Default is FALSE.
-#' @param method Character. Geocoding method. One of "osm" (default) or "arcgis".
+#' @param method Character. Geocoding method. One of "arcgis" (default) or "osm".
 #'
 #' @return A list with the following elements:
 #' \itemize{
@@ -38,7 +38,7 @@
 
 
 
-getRoute <- function(origin, destination, plot = TRUE, progress = FALSE, method = c("osm", "arcgis")) {
+getRoute <- function(origin, destination, plot = TRUE, progress = FALSE, method = c("arcgis", "osm")) {
 
 
   method <- match.arg(method)

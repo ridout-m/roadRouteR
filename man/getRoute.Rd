@@ -9,7 +9,7 @@ getRoute(
   destination,
   plot = TRUE,
   progress = FALSE,
-  method = c("osm", "arcgis")
+  method = c("arcgis", "osm")
 )
 }
 \arguments{
@@ -21,7 +21,7 @@ getRoute(
 
 \item{progress}{Logical. If TRUE, prints progress messages to the console. Default is FALSE.}
 
-\item{method}{Character. Geocoding method. One of "osm" (default) or "arcgis".}
+\item{method}{Character. Geocoding method. One of "arcgis" (default) or "osm".}
 }
 \value{
 A list with the following elements:
