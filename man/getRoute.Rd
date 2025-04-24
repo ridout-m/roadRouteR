@@ -25,10 +25,10 @@ getRoute(
 }
 \value{
 A list with the following elements:
-\describe{
-  \item{distance_km}{Distance in kilometers.}
-  \item{duration_mins}{Estimated travel time in minutes.}
-  \item{route}{An `sf` object representing the route geometry.}
+\itemize{
+  \item \code{distance_km}:  Distance in kilometers
+  \item \code{duration_mins}:  Estimated travel time in minutes
+  \item \code{route}:  An \code{sf} object representing the route geometry
 }
 }
 \description{
