@@ -1,5 +1,8 @@
 # roadRouteR
 
+[![GitHub version](https://img.shields.io/github/v/tag/ridout-m/roadRouteR?label=version)](https://github.com/ridout-m/roadRouteR/releases)
+[View on GitHub](https://github.com/ridout-m/roadRouteR)
+
 Calculate and plot real road routes using OpenStreetMap and OSRM.
 
 ## Installation
@@ -7,7 +10,7 @@ Calculate and plot real road routes using OpenStreetMap and OSRM.
 You can install the development version of this package directly from GitHub:
 
 ```r
-# install.packages("devtools")  # if you don't already have it
+# install.packages("devtools")
 devtools::install_github("ridout-m/roadRouteR")
 ```
 
