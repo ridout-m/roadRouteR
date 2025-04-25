@@ -19,10 +19,8 @@ Imports:
     sf,
     osrm,
     tidygeocoder,
-    dplyr,
     geosphere,
-    leaflet,
-    magrittr,
-    tibble
+    leaflet
+
 
     

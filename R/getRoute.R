@@ -22,16 +22,12 @@
 #' try(getRoute("Brandenburg Gate, Berlin, Germany", "Paris", progress = TRUE))
 #' }
 #'
-#' @importFrom utils flush.console
+#' @importFrom utils flush.console globalVariables
 #' @importFrom sf st_coordinates
 #' @importFrom geosphere distHaversine
 #' @importFrom osrm osrmRoute
 #' @importFrom leaflet leaflet leafletOptions addTiles addPolylines addMarkers addControl
 #' @importFrom tidygeocoder geocode
-#' @importFrom dplyr select rename
-#' @importFrom tibble tibble
-#' @importFrom magrittr %>%
-#' @importFrom utils globalVariables
 #'
 #' @export
 
@@ -54,18 +50,26 @@ getRoute <- function(origin, destination, plot = TRUE, progress = FALSE, method 
   if (progress){
     prog("~ Geocoding addresses")
   }
-  postcodes <- tibble::tibble(id = c("origin", "dest"),
-                      address = c(origin, destination))
-  coords <- postcodes %>%
-    tidygeocoder::geocode(address = address, method = method) %>%
-    dplyr::select(-address) %>%
-    dplyr::rename(lon = long)
+
+  postcodes <- data.frame(
+    id = c("origin", "dest"),
+    address = c(origin, destination),
+    stringsAsFactors = FALSE
+  )
+  geo <- tidygeocoder::geocode(postcodes, address = address, method = method)
+  coords <- data.frame(
+    id = postcodes$id,
+    lat = geo$lat,
+    lon = geo$long,
+    stringsAsFactors = FALSE
+  )
 
 
   # Safe route fetch
   if (progress){
     prog("~ Fetching route from OSRM")
   }
+
   route <- tryCatch({
     osrm::osrmRoute(src = c(coords$lon[1], coords$lat[1]),
               dst = c(coords$lon[2], coords$lat[2]),
@@ -82,6 +86,7 @@ getRoute <- function(origin, destination, plot = TRUE, progress = FALSE, method 
   if (progress){
     prog("~ Handling pathing issues")
   }
+
   coords_matrix <- sf::st_coordinates(route$geometry)[, 1:2]
   dists <- geosphere::distHaversine(coords_matrix[-nrow(coords_matrix), ], coords_matrix[-1, ])
   if (any(dists > 10000)) {
@@ -93,6 +98,7 @@ getRoute <- function(origin, destination, plot = TRUE, progress = FALSE, method 
   if (progress){
     prog("~ Calculating distance and duration")
   }
+
   distance <- paste(route$distance)
   duration <- paste0(floor(route$duration / 60), "h ", round(route$duration %% 60), "m")
   cat(paste(rep("-", 70), collapse = ""))
@@ -115,11 +121,11 @@ getRoute <- function(origin, destination, plot = TRUE, progress = FALSE, method 
       "Duration: ", duration
     )
 
-    map <- leaflet::leaflet(options = leaflet::leafletOptions(worldCopyJump = TRUE)) %>%
-      leaflet::addTiles() %>%
-      leaflet::addPolylines(data = route, color = "blue", weight = 4) %>%
-      leaflet::addMarkers(lng = coords$lon[1], lat = coords$lat[1], label = "Origin") %>%
-      leaflet::addMarkers(lng = coords$lon[2], lat = coords$lat[2], label = "Destination") %>%
+    map <- leaflet::leaflet(options = leaflet::leafletOptions(worldCopyJump = TRUE)) |>
+      leaflet::addTiles() |>
+      leaflet::addPolylines(data = route, color = "blue", weight = 4) |>
+      leaflet::addMarkers(lng = coords$lon[1], lat = coords$lat[1], label = "Origin") |>
+      leaflet::addMarkers(lng = coords$lon[2], lat = coords$lat[2], label = "Destination") |>
       leaflet::addControl(html = route_info, position = "topright")
 
     print(map)
