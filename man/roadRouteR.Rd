@@ -23,7 +23,6 @@ A lightweight wrapper for calculating and visualizing realistic road routes usin
   \item \code{sf}:  Handles spatial data and geometry
   \item \code{leaflet}:  Plots interactive web maps
   \item \code{geosphere}:  Detects route jumps or broken segments
-  \item \code{dplyr}:  Light data wrangling
 }
 }
 
