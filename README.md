@@ -19,8 +19,6 @@ library(roadRouteR)
 ## Usage
 
 ```r
-library(roadRouteR)
-
 getRoute("Paris, France", "Berlin, Germany")
 getRoute("SW1P 4DF, UK", "YO1 7PX, UK", plot = FALSE)
 ```
