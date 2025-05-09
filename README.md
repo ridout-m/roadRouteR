@@ -11,7 +11,9 @@ You can install the development version of this package directly from GitHub:
 
 ```r
 install.packages("pak")
+library(pak)
 pak::pak("ridout-m/roadRouteR")
+library(roadRouteR)
 ```
 
 ## Usage
